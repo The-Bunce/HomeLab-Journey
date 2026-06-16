@@ -7,7 +7,8 @@ The purpose of this repo is to document my journey and the processes I use throu
 
 
 
-# <img src="images\Server Icon.png" width="25" height="25" /> BUNCEPROX01
+# <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> BUNCEPROX01
+# <img src="images/Readme-images/BUNCEPROX-01.jpeg" width="800" height="500" />
 -Specs: 
 - CPU: Ryzen Threadripper 1950x 16 cores 32 threads
 - RAM: 128GB Ram
@@ -27,7 +28,8 @@ The purpose of this repo is to document my journey and the processes I use throu
 -Description
 - This is the main host which is used to run the Docker prod containers, proxmox vm backup server, Truenas scale NAS, and the DNS (pihole), this host is vital to ensure the network continues to run without issues. 
 
-# <img src="images\Server Icon.png"  alt="Hammer and Wrench" width="25" height="25" /> BUNCEPROX02
+# <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> BUNCEPROX02
+# <img src="images/Readme-images/BUNCEPROX-02.jpeg" width="800" height="500" />
 -Specs:
 - CPU: Ryzen 9 3900x (Manual Undervolt)
 - RAM: 48GB Ram
@@ -43,7 +45,8 @@ The purpose of this repo is to document my journey and the processes I use throu
 - This host is used to run the DEV environment for Docker and the AI server (as it contains the RTX 3090 GPU), it also is used as a secondary PC running Linux. 
 
 
-# <img src="images\Server Icon.png" alt="Hammer and Wrench" width="25" height="25" /> BUNCE-DESKTOP-01
+# <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> BUNCEPROX03
+# <img src="images/Readme-images/BUNCEPROX-03.jpeg" width="800" height="500" />
 -Specs:
 - CPU: Ryzen 9 5950x (Manual Undervolt)
 - RAM: 48GB 3200mhz (32 + 16)
@@ -55,17 +58,8 @@ The purpose of this repo is to document my journey and the processes I use throu
 -Description
 - This host is my main PC and is used for gaming and accessing the hosts via vscode. 
 
-- # <img src="images\Firewall Icon.png" alt="Hammer and Wrench" width="25" height="25" /> BUNCEFW01
--Specs:
-- CPU: i5-7500 CPU
-- RAM: 8GB
-- Chassis: HP ProDesk 400
-- Storage:
-- 1 nvme0n1	256GB
+# <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Main Rack 1
+# <img src="images/Readme-images/Large Depth Server Rack.jpeg" width="800" height="500" />
 
--Description
-- This host is used for the firewall running OPNsense. 
-
-- # <img src="images\Service.png" alt="Hammer and Wrench" width="25" height="25" /> Homepage
-- The dashboard is my single source of access and also provides useful stats to ensure if issues occur i will be aware 
-- # <img src="images\homepage.png" width="500" height="500" />
+# <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Main Rack 2
+# <img src="images/Readme-images/Samson Server Rack.jpeg" width="800" height="500" />
