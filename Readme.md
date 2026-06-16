@@ -1,30 +1,14 @@
 #  Welcome to THEBUNCE Network
- # <img src="images\Setup.jpeg" width="800" height="500" />
-The purpose of this repo is to document my journey and the processes I use through building my homelab, the homelab will be used for hosting critical services that i used on a daily basis and to hone my skills in deploying secure systems, this will include:
-- SIEM (Wazuh) with clamAV
-- Vulnerability Scanner (OpenVAS)
-- Firewall Setup (OPNsense)
-- Login Security (Fail2Ban, PassKeys, and 2FA)
-# Network Diagram
- # <img src="images\Network Layout.png" width="800" height="700" />
-# <img src="images\Server Icon.png" alt="Hammer and Wrench" width="25" height="25" /> Racks
-- # <img src="images\Downstairs.jpeg" width="500" height="500" />
-- Contains: 
-- BUNCEPROX02
-- # <img src="images\Rack 2 pt1.jpeg" width="500" height="500" />
-- Contains: 
-- BUNCE-CISCO-ROUTER-01
-- BUNCE-LINUX-02
-- BUNCE-CISCO-ASA-01
-- BUNCE-JUNIPER-01
-- # <img src="images\Rack 1 pt2.jpeg " width="500" height="500" />
-- Contains: 
-- BUNCE-DESKTOP-01
-- BUNCEPROX01
-- BUNCE-FW-01
-- BUNCE-CISCO-SW-01
-# <img src="images\Server Icon.png" alt="Hammer and Wrench" width="25" height="25" /> Servers
-# <img src="images\Server Icon.png"  alt="Hammer and Wrench" width="25" height="25" /> BUNCEPROX01
+ # <img src="images\Readme-images" width="800" height="500" />
+The purpose of this repo is to document my journey and the processes I use through building my homelab, the homelab will be used for hosting critical services that i used on a daily basis and to hone my skills in deploying secure systems
+# Network Diagram Overview
+
+# <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Servers & Hardware
+
+
+
+# <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> BUNCEPROX01
+# <img src="images/Readme-images/BUNCEPROX-01.jpeg" width="800" height="500" />
 -Specs: 
 - CPU: Ryzen Threadripper 1950x 16 cores 32 threads
 - RAM: 128GB Ram
@@ -44,7 +28,8 @@ The purpose of this repo is to document my journey and the processes I use throu
 -Description
 - This is the main host which is used to run the Docker prod containers, proxmox vm backup server, Truenas scale NAS, and the DNS (pihole), this host is vital to ensure the network continues to run without issues. 
 
-# <img src="images\Server Icon.png"  alt="Hammer and Wrench" width="25" height="25" /> BUNCEPROX02
+# <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> BUNCEPROX02
+# <img src="images/Readme-images/BUNCEPROX-02.jpeg" width="800" height="500" />
 -Specs:
 - CPU: Ryzen 9 3900x (Manual Undervolt)
 - RAM: 48GB Ram
@@ -60,7 +45,8 @@ The purpose of this repo is to document my journey and the processes I use throu
 - This host is used to run the DEV environment for Docker and the AI server (as it contains the RTX 3090 GPU), it also is used as a secondary PC running Linux. 
 
 
-# <img src="images\Server Icon.png" alt="Hammer and Wrench" width="25" height="25" /> BUNCE-DESKTOP-01
+# <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> BUNCEPROX03
+# <img src="images/Readme-images/BUNCEPROX-03.jpeg" width="800" height="500" />
 -Specs:
 - CPU: Ryzen 9 5950x (Manual Undervolt)
 - RAM: 48GB 3200mhz (32 + 16)
@@ -72,17 +58,8 @@ The purpose of this repo is to document my journey and the processes I use throu
 -Description
 - This host is my main PC and is used for gaming and accessing the hosts via vscode. 
 
-- # <img src="images\Firewall Icon.png" alt="Hammer and Wrench" width="25" height="25" /> BUNCEFW01
--Specs:
-- CPU: i5-7500 CPU
-- RAM: 8GB
-- Chassis: HP ProDesk 400
-- Storage:
-- 1 nvme0n1	256GB
+# <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Main Rack 1
+# <img src="images/Readme-images/LargeDepthServerRack.jpeg" width="800" height="500" />
 
--Description
-- This host is used for the firewall running OPNsense. 
-
-- # <img src="images\Service.png" alt="Hammer and Wrench" width="25" height="25" /> Homepage
-- The dashboard is my single source of access and also provides useful stats to ensure if issues occur i will be aware 
-- # <img src="images\homepage.png" width="500" height="500" />
+# <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Main Rack 2
+# <img src="images/Readme-images/SamsonServerRack.jpeg" width="800" height="500" />
