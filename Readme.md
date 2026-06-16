@@ -1,9 +1,9 @@
 #  Welcome to THEBUNCE Network
  # <img src="images\Readme-images" width="800" height="500" />
 The purpose of this repo is to document my journey and the processes I use through building my homelab, the homelab will be used for hosting critical services that i used on a daily basis and to hone my skills in deploying secure systems
-# Network Diagram Overview
+- # Network Diagram Overview
 
-# <img src="images\Readme-images\Server Icon.png" alt="Hammer and Wrench" width="25" height="25" /> Servers & Hardware
+- # <img src="images\Readme-images\Server Icon.png" alt="Hammer and Wrench" width="25" height="25" /> Servers & Hardware
 - # <img src="images\Readme-image\BUNCEPROX-01.jpeg " width="500"
 
 
