@@ -3,7 +3,7 @@
 The purpose of this repo is to document my journey and the processes I use through building my homelab, the homelab will be used for hosting critical services that i used on a daily basis and to hone my skills in deploying secure systems
 # Network Diagram Overview
 
-# <img src="images\Readme-images\Server-Icon.png" width="25" height="25" /> Servers & Hardware
+# <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Servers & Hardware
 
 
 
