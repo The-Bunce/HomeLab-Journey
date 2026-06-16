@@ -1,29 +1,13 @@
 #  Welcome to THEBUNCE Network
- # <img src="images\Setup.jpeg" width="800" height="500" />
-The purpose of this repo is to document my journey and the processes I use through building my homelab, the homelab will be used for hosting critical services that i used on a daily basis and to hone my skills in deploying secure systems, this will include:
-- SIEM (Wazuh) with clamAV
-- Vulnerability Scanner (OpenVAS)
-- Firewall Setup (OPNsense)
-- Login Security (Fail2Ban, PassKeys, and 2FA)
-# Network Diagram
- # <img src="images\Network Layout.png" width="800" height="700" />
-# <img src="images\Server Icon.png" alt="Hammer and Wrench" width="25" height="25" /> Racks
-- # <img src="images\Downstairs.jpeg" width="500" height="500" />
-- Contains: 
-- BUNCEPROX02
-- # <img src="images\Rack 2 pt1.jpeg" width="500" height="500" />
-- Contains: 
-- BUNCE-CISCO-ROUTER-01
-- BUNCE-LINUX-02
-- BUNCE-CISCO-ASA-01
-- BUNCE-JUNIPER-01
-- # <img src="images\Rack 1 pt2.jpeg " width="500" height="500" />
-- Contains: 
-- BUNCE-DESKTOP-01
-- BUNCEPROX01
-- BUNCE-FW-01
-- BUNCE-CISCO-SW-01
-# <img src="images\Server Icon.png" alt="Hammer and Wrench" width="25" height="25" /> Servers
+ # <img src="images\Readme-images" width="800" height="500" />
+The purpose of this repo is to document my journey and the processes I use through building my homelab, the homelab will be used for hosting critical services that i used on a daily basis and to hone my skills in deploying secure systems
+# Network Diagram Overview
+
+# <img src="images\Readme-images\Server Icon.png" alt="Hammer and Wrench" width="25" height="25" /> Servers & Hardware
+- # <img src="images\Readme-image\BUNCEPROX-01.jpeg " width="500"
+
+
+
 # <img src="images\Server Icon.png"  alt="Hammer and Wrench" width="25" height="25" /> BUNCEPROX01
 -Specs: 
 - CPU: Ryzen Threadripper 1950x 16 cores 32 threads
