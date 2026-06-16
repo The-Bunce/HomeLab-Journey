@@ -88,14 +88,14 @@ To do all of the above I will be using the following servers
 
 # <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Main Rack 1
 # <img src="Images/Readme-images/LargeDepthServerRack.jpeg" width="800" height="800" />
-# <img src="Images/Readme-images/Storage-Icon.png" width="25" height="25" />Description:
+# <img src="Images/Readme-images/Details-Icon.png" width="25" height="25" />Description:
 Contains the following hosts:
 - BUNCEPROX01
 - BUNCE=DESKTOP-01
 - Main Switch (Cisco 2960X 48)
 # <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Main Rack 2
 # <img src="Images/Readme-images/SamsonServerRack.jpeg" width="800" height="800" />
-# <img src="Images/Readme-images/Storage-Icon.png" width="25" height="25" />Description:
+# <img src="Images/Readme-images/Details-Icon.png" width="25" height="25" />Description:
 Contains the following hosts:
 - BUNCEPROX02
 - BUNCEPROX03
