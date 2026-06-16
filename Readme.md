@@ -1,4 +1,4 @@
-#  Welcome to THEBUNCE Network
+#  Welcome to the Homelab Journey
  # <img src="Images/Readme-images/Homelab.drawio.png" width="800" height="500" />
 The purpose of this repo is to document my journey and the processes I use throughout building my homelab, the homelab will be used for hosting critical services that i used on a daily basis and to hone my skills in deploying secure systems
 
@@ -40,7 +40,7 @@ To do all of the above I will be using the following servers
 - Mobo: ASUS PRIME X399-A MotherBoard
 - Chassis: 5U Case
 
-# <Img src="Images/Readme-Images/Storage-Icon.png" wIdth="25" heIght="25" />Storage:
+# <img src="Images/Readme-images/Storage-Icon.png" width="25" height="25" />Storage:
 - CT4000BX500SSD101	4000
 - Kingston SA400	480
 - Kingston SA400	480
