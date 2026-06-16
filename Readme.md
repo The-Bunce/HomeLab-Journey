@@ -1,5 +1,5 @@
 #  Welcome to THEBUNCE Network
- # <img src="Images/Readme-images/HomeLab.drawio.svg" width="800" height="500" />
+ # <img src="Images/Readme-images/Homelab.drawio.png" width="800" height="500" />
 The purpose of this repo is to document my journey and the processes I use throughout building my homelab, the homelab will be used for hosting critical services that i used on a daily basis and to hone my skills in deploying secure systems
 
 # <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Goals/Objectives
