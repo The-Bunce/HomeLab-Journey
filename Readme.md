@@ -32,7 +32,7 @@ To do all of the above i will be using the following servers
 
 # <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Prod Server BUNCEPROX01
 # <img src="Images/Readme-images/BUNCEPROX-01.jpeg" width="800" height="500" />
--Specs: 
+# <img src="Images/Readme-images/Cogs-Icon.png" width="25" height="25" />Specs: 
 - CPU: Ryzen Threadripper 1950x 16 cores 32 threads
 - RAM: 128GB Ram
 - GPU 1: RTX 3090 24GB
@@ -49,7 +49,7 @@ To do all of the above i will be using the following servers
 
 # <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Dev Server BUNCEPROX02
 # <img src="Images/Readme-images/BUNCEPROX-02.jpeg" width="800" height="800" />
--Specs:
+# <img src="Images/Readme-images/Cogs-Icon.png" width="25" height="25" />Specs: 
 - CPU: Ryzen Threadripper 1920x 16 cores 32 threads
 - RAM: 32GB Ram (8 x 2)
 - Mobo: X399 AORUS Gaming 7
@@ -67,7 +67,7 @@ To do all of the above i will be using the following servers
 
 # <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Backup Server BUNCEPROX03
 # <img src="Images/Readme-images/BUNCEPROX-03.jpeg" width="800" height="800" />
--Specs:
+# <img src="Images/Readme-images/Cogs-Icon.png" width="25" height="25" />Specs: 
 - CPU: I5-4590
 - RAM: 16GB DDR3 (4 x 4)
 - Mobo: ROG MAXIMUS VII RANGER
