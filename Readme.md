@@ -59,7 +59,7 @@ The purpose of this repo is to document my journey and the processes I use throu
 - This host is my main PC and is used for gaming and accessing the hosts via vscode. 
 
 # <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Main Rack 1
-# <img src="images/Readme-images/Large Depth Server Rack.jpeg" width="800" height="500" />
+# <img src="images/Readme-images/LargeDepthServerRack.jpeg" width="800" height="500" />
 
 # <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Main Rack 2
-# <img src="images/Readme-images/Samson Server Rack.jpeg" width="800" height="500" />
+# <img src="images/Readme-images/SamsonServerRack.jpeg" width="800" height="500" />
