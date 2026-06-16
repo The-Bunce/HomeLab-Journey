@@ -8,7 +8,7 @@ The purpose of this repo is to document my journey and the processes I use throu
 
 
 # <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> BUNCEPROX01
-# <img src="images/Readme-images/BUNCEPROX-01.jpeg" width="800" height="500" />
+# <img src="Images/Readme-images/BUNCEPROX-01.jpeg" width="800" height="500" />
 -Specs: 
 - CPU: Ryzen Threadripper 1950x 16 cores 32 threads
 - RAM: 128GB Ram
@@ -29,7 +29,7 @@ The purpose of this repo is to document my journey and the processes I use throu
 - This is the main host which is used to run the Docker prod containers, proxmox vm backup server, Truenas scale NAS, and the DNS (pihole), this host is vital to ensure the network continues to run without issues. 
 
 # <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> BUNCEPROX02
-# <img src="images/Readme-images/BUNCEPROX-02.jpeg" width="800" height="500" />
+# <img src="Images/Readme-images/BUNCEPROX-02.jpeg" width="800" height="500" />
 -Specs:
 - CPU: Ryzen 9 3900x (Manual Undervolt)
 - RAM: 48GB Ram
@@ -46,7 +46,7 @@ The purpose of this repo is to document my journey and the processes I use throu
 
 
 # <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> BUNCEPROX03
-# <img src="images/Readme-images/BUNCEPROX-03.jpeg" width="800" height="500" />
+# <img src="Images/Readme-images/BUNCEPROX-03.jpeg" width="800" height="500" />
 -Specs:
 - CPU: Ryzen 9 5950x (Manual Undervolt)
 - RAM: 48GB 3200mhz (32 + 16)
@@ -59,7 +59,7 @@ The purpose of this repo is to document my journey and the processes I use throu
 - This host is my main PC and is used for gaming and accessing the hosts via vscode. 
 
 # <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Main Rack 1
-# <img src="images/Readme-images/LargeDepthServerRack.jpeg" width="800" height="500" />
+# <img src="Images/Readme-images/LargeDepthServerRack.jpeg" width="800" height="500" />
 
 # <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Main Rack 2
-# <img src="images/Readme-images/SamsonServerRack.jpeg" width="800" height="500" />
+# <img src="Images/Readme-images/SamsonServerRack.jpeg" width="800" height="500" />
