@@ -85,8 +85,6 @@ To do all of the above I will be using the following servers
 
 # <img src="Images/Readme-images/Details-Icon.png" width="25" height="25" />Description:
 - This host is used for the Backup server it runs two vms on Proxmox, TrueNas & Proxmox Backup Server
-# <img src="Images/Readme-images/Storage-Icon.png" width="25" height="25" />Storage:
-- This host is my main PC and is used for gaming and accessing the hosts via vscode. 
 
 # <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Main Rack 1
 # <img src="Images/Readme-images/LargeDepthServerRack.jpeg" width="800" height="800" />
