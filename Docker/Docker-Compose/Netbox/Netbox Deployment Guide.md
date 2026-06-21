@@ -101,3 +101,44 @@ initialise NetBox,
 create caches/queues.
 basically Netbox started before Postgres was fully ready
 
+
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 6
+
+Now you need to down the docker container and restart it 
+
+```bash
+docker compose down
+```
+
+wait for it to finish 
+
+Now run the below command it will take some time but be patient
+
+```bash
+docker compose up -d
+```
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 7
+
+Now that it is all up and running please run the following command to create your super user, this will be used to login to the webpage 
+
+```bash
+docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
+```
+
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Optional steps
+
+you can check the passwords to ensure they have been updated by using the following commands
+ensure you are in the env folder of the project directory and change the .env to the env file you want to check for instance netbox.env
+
+```bash
+grep -E 'SECRET_KEY|POSTGRES_PASSWORD|DB_PASSWORD|REDIS_PASSWORD' .env
+```
+
+ensure the ports are not exposed to other machines and only internally to the docker containers it should look like this 
+5432/tcp and not like 
+0.0.0.0:5432->5432/tcp 
+to see this please run 
+
+```bash
+docker ps
+```
