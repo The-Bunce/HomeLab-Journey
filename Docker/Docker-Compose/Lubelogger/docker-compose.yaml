@@ -1,0 +1,57 @@
+---
+
+services:
+  postgres:
+    image: postgres:18
+    container_name: lubelogger-postgres
+    user: 1000:1000
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${USER}
+      POSTGRES_PASSWORD: ${PASSWORD}
+      POSTGRES_DB: "${POSTGRES_DB}"
+    volumes:
+      - /home/${VOLUMES_USER}/docker/lubelogger/postgres:/var/lib/postgresql/
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
+    networks:
+      proxy:
+  app:
+    image: ghcr.io/hargata/lubelogger:latest
+    container_name: lubelogger
+    user: 1000:1000
+    restart: unless-stopped
+    environment:
+      POSTGRES_CONNECTION: "Host=postgres:5432;Username=${USER};Password=${PASSWORD};Database=${POSTGRES_DB};"
+    # volumes used to keep data persistent
+    volumes:
+      - /home/${VOLUMES_USER}/docker/lubelogger/data:/App/data
+      - /home/${VOLUMES_USER}/docker/lubelogger/keys:/root/.aspnet/DataProtection-Keys
+    # expose port and/or use serving via traefik
+    env_file:
+      - .env
+    ports:
+      - 8080:8080
+    networks:
+      proxy:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}.entrypoints=http"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}.rule=Host(`${DOMAIN_NAME}`)"
+      - "traefik.http.middlewares.${TRAEFIK_ROUTER_NAME}-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}.middlewares=${TRAEFIK_ROUTER_NAME}-https-redirect"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}-secure.entrypoints=https"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}-secure.rule=Host(`${DOMAIN_NAME}`)"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}-secure.tls=true"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}-secure.service=${TRAEFIK_ROUTER_NAME}"
+      - "traefik.http.services.${TRAEFIK_ROUTER_NAME}.loadbalancer.server.port=8080"
+      - "traefik.docker.network=proxy"
+networks:
+  proxy:
+    external: true
+
+volumes:
+  data:
+  keys:
+  postgres:
