@@ -29,3 +29,34 @@
 | 26 |Container Runtime|-------------|-------------|-------------|-------------|
 | 27 |Docker Security Operations|-------------|-------------|-------------|-------------|
 | 28 |Docker Swarm Configuration|-------------|-------------|-------------|-------------|
+
+# <img src="/Images/Docker-Images/Netbox-Image.png" width="800" height="500"/> Audit of my own systems against the above standards (before i fixed them to be more secure)
+| Number | Docker Best Practice | Compliant | Explaination | How I remdiated |
+| 1 |Keep Host and Docker Up to Date|-------------|-------------|-------------|
+| 2 |Do Not Expose the Docker Daemon Socket|-------------|-------------|-------------|
+| 3 |Run Docker in Rootless Mode|-------------|-------------|-------------|
+| 4 |Avoid Privileged Containers|-------------|-------------|-------------|
+| 5 |Limit Container Resources|-------------|-------------|-------------|
+| 6 |Segregate Container Networks|-------------|-------------|-------------|
+| 7 |Improve Container Isolation|-------------|-------------|-------------|
+| 8 |Set Filesystem and Volumes to Read-only|-------------|-------------|-------------|
+| 9 |Complete Lifecycle Management|-------------|-------------|-------------|
+| 10 |Restrict System Calls from Within Containers|-------------|-------------|-------------|
+| 11 |Scan and Verify Container Images|-------------|-------------|-------------|
+| 12 |Use Minimal Base Images|-------------|-------------|-------------|
+| 13 |Don’t Leak Sensitive Info to Docker Images|-------------|-------------|-------------|
+| 14 |Use Multi Stage Builds|-------------|-------------|-------------|
+| 15 |Secure Container Registries|-------------|-------------|-------------|
+| 16 |Use Fixed Tags for Immutability|-------------|-------------|-------------|
+| 17 |Add the HEALTHCHECK Instruction to the Container Image|-------------|-------------|-------------|
+| 18 |Use COPY Instead of ADD When Writing Dockerfiles|-------------|-------------|-------------|
+| 19 |Monitor Container Activity|-------------|-------------|-------------|
+| 20 |Secure Containers at Runtime|-------------|-------------|-------------|
+| 21 |Save Troubleshooting Data Separately from Containers|-------------|-------------|-------------|
+| 22 |Use Metadata Labels for Images|-------------|-------------|-------------|
+| 23 |Host Configuration|-------------|-------------|-------------|
+| 24 |Docker Daemon Configuration|-------------|-------------|-------------|
+| 25 |Container Images and Build File|-------------|-------------|-------------|
+| 26 |Container Runtime|-------------|-------------|-------------|
+| 27 |Docker Security Operations|-------------|-------------|-------------|
+| 28 |Docker Swarm Configuration|-------------|-------------|-------------|
