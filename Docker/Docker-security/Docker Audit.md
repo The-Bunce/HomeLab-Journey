@@ -30,8 +30,10 @@
 | 27 |Docker Security Operations|-------------|-------------|-------------|-------------|
 | 28 |Docker Swarm Configuration|-------------|-------------|-------------|-------------|
 
-# <img src="/Images/Docker-Images/Netbox-Image.png" width="800" height="500"/> Audit of my own systems against the above standards (before i fixed them to be more secure)
+# <img src="/Images/Docker-Images/Audit.png" width="25" height="25" /> Audit of my own systems against the above standards (before i fixed them to be more secure)
+
 | Number | Docker Best Practice | Compliant | Explaination | How I remdiated |
+|----------|-------------|-------------|-------------|-------------|
 | 1 |Keep Host and Docker Up to Date|-------------|-------------|-------------|
 | 2 |Do Not Expose the Docker Daemon Socket|-------------|-------------|-------------|
 | 3 |Run Docker in Rootless Mode|-------------|-------------|-------------|
