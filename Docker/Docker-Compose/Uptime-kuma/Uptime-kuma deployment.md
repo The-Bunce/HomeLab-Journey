@@ -1,5 +1,5 @@
 #  Homelab Issue
-# <img src="/Images/Docker-Images/Netbox-Image.png" width="800" height="500"/>
+# <img src="/Images/Docker-Images/Uptime-kuma.png" width="800" height="500"/>
 The issue I have identified in my homelab is the ability to monitor hosts to identify when issues occur, there was a choice between checkmk and Uptime-Kuma, I decided on Uptime-Kuma as its simplier and will provide the services i require. The display/dashboard created from Uptime-Kuma will be displayed on the LRM-7521 Displays within Main-Rack 2 
 
 # <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step By Step Guide
@@ -53,7 +53,7 @@ networks:
   proxy:
     external: true
 ```
-Ctrl + X && y
+Ctrl + X && Y
 
 now we need to create the .env file (this will be where we give the variables listed above values)
 ```bash
@@ -64,4 +64,12 @@ VOLUME_USER=
 DOMAIN_NAME=
 TRAEFIK_ROUTER_NAME=
 ```
-Ctrl + X && y
+Ctrl + X && Y
+
+now you will need to go to the URL Uptime-kuma is hosted on, it will ask you to create a user 
+once that is done you should now be able to add hosts for monitoring 
+
+
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 2
+
+To add a host for monitoring click the add host button on the dashboard 
