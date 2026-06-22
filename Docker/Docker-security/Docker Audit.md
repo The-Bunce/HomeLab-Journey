@@ -35,7 +35,7 @@
 | Number | Docker Best Practice | Compliant | Explaination | How I remediated |
 |----------|-------------|-------------|-------------|-------------|
 | 1 |Keep Host and Docker Up to Date|<img src="/Images/Docker-Images/Not Compliant.png" width="35" height="35" />|-------------|-------------|
-| 2 |Do Not Expose the Docker Daemon Socket|<img src="/Images/Docker-Images/yes.png" width="35" height="35" />|-------------|-------------|
+| 2 |Do Not Expose the Docker Daemon Socket|<img src="/Images/Docker-Images/yes.png" width="25" height="25" />|-------------|-------------|
 | 3 |Run Docker in Rootless Mode|-------------|-------------|-------------|
 | 4 |Avoid Privileged Containers|-------------|-------------|-------------|
 | 5 |Limit Container Resources|-------------|-------------|-------------|
