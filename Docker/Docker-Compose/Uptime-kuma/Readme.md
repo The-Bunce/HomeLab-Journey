@@ -53,7 +53,7 @@ networks:
   proxy:
     external: true
 ```
-Ctrl + X && Y
+Ctrl + X && Y (this is to save the docker compose file)
 
 Now we need to create the .env file (this will be where we give the variables listed above values)
 ```bash
