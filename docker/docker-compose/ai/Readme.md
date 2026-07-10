@@ -1,5 +1,4 @@
 #  Homelab Issue
-# <img src="/Images/Docker-Images/Netbox-Image.png" width="800" height="500"/>
 I have noticed that I have started to use AI models quite a lot recently, so I have decided to deploy my own AI system
 
 # <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Requirements
@@ -350,8 +349,9 @@ now you need to ensure you change the networks prompted here as the one i am usi
 you will now need to amend the env file to use your data see below for generating the Ollama credential
 
 # <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 7 Generating the Ollama Credential 	
-
+```bash
 echo $(htpasswd -nB ollamauser) | sed -e s/\\$/\\$\\$/g
+```
 then place this value in the .env file under the OLLAMA_API_CREDENTIALS section
 
 	
