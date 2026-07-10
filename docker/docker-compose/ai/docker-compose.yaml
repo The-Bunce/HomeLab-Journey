@@ -1,0 +1,183 @@
+services:
+
+# Ollama
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - OLLAMA_KEEP_ALIVE=1h
+    networks:
+      - proxy
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./ollama:/root/.ollama
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ollama.rule=Host(`ollama.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.ollama.entrypoints=https"
+      - "traefik.http.routers.ollama.tls=true"
+      - "traefik.http.routers.ollama.tls.certresolver=${RESOLVER}"
+      - "traefik.http.routers.ollama.middlewares=default-headers@file"
+      - "traefik.http.routers.ollama.middlewares=ollama-auth"
+      - "traefik.http.services.ollama.loadbalancer.server.port=11434"
+      - "traefik.http.routers.ollama.middlewares=auth"
+      - "traefik.http.middlewares.auth.basicauth.users=${OLLAMA_API_CREDENTIALS}"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+# open web ui
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:latest
+    container_name: open-webui
+    restart: unless-stopped
+    networks:
+      - proxy
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - 'OLLAMA_BASE_URL=http://ollama:11434'
+      - ENABLE_RAG_WEB_SEARCH=True
+      - RAG_WEB_SEARCH_ENGINE=searxng
+      - RAG_WEB_SEARCH_RESULT_COUNT=3
+      - RAG_WEB_SEARCH_CONCURRENT_REQUESTS=10
+      - SEARXNG_QUERY_URL=http://searxng:8080/search?q=<query>
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./open-webui:/app/backend/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.open-webui.rule=Host(`chat.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.open-webui.entrypoints=https"
+      - "traefik.http.routers.open-webui.tls=true"
+      - "traefik.http.routers.open-webui.tls.certresolver=${RESOLVER}"
+      - "traefik.http.routers.open-webui.middlewares=default-headers@file"
+      - "traefik.http.services.open-webui.loadbalancer.server.port=8080"
+    depends_on:
+      - ollama
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    networks:
+      - proxy
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./searxng:/etc/searxng
+    depends_on:
+      - ollama
+      - open-webui
+    restart: unless-stopped
+
+
+  
+# whisper
+  mongo:
+    image: mongo
+    env_file:
+      - .env
+    networks:
+      - proxy
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./whisper/db_data:/data/db
+      - ./whisper/db_data/logs/:/var/log/mongodb/
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER:-whishper}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS:-whishper}
+    command: ['--logpath', '/var/log/mongodb/mongod.log']
+
+  translate:
+    container_name: whisper-libretranslate
+    image: libretranslate/libretranslate:latest-cuda
+    env_file:
+      - .env
+    networks:
+      - proxy
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./whisper/libretranslate/data:/home/libretranslate/.local/share
+      - ./whisper/libretranslate/cache:/home/libretranslate/.local/cache
+    user: root
+    tty: true
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - LT_DISABLE_WEB_UI=True
+      - LT_LOAD_ONLY=${LT_LOAD_ONLY:-en,fr,es}
+      - LT_UPDATE_MODELS=True
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu]
+
+  whisper:
+    container_name: whisper
+    pull_policy: always
+    image: pluja/whishper:latest-gpu
+    env_file:
+      - .env
+    networks:
+      - proxy
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./whisper/uploads:/app/uploads
+      - ./whisper/logs:/var/log/whishper
+      - ./whisper/models:/app/models
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whisper.rule=Host(`whisper.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.whisper.entrypoints=https"
+      - "traefik.http.routers.whisper.tls=true"
+      - "traefik.http.routers.whisper.tls.certresolver=${RESOLVER}"
+      - "traefik.http.services.whisper.loadbalancer.server.port=80"
+      - "traefik.http.routers.whisper.middlewares=default-headers@file"
+    depends_on:
+      - mongo
+      - translate
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - PUBLIC_INTERNAL_API_HOST=${WHISHPER_HOST}
+      - PUBLIC_TRANSLATION_API_HOST=${WHISHPER_HOST}
+      - PUBLIC_API_HOST=${WHISHPER_HOST:-}
+      - PUBLIC_WHISHPER_PROFILE=gpu
+      - WHISPER_MODELS_DIR=/app/models
+      - UPLOAD_DIR=/app/uploads
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu]
+networks:
+  proxy:
+    external: true
