@@ -1,4 +1,4 @@
-#  Backup of Virtual Machines
+#  Scanning Of Github Repos
 The issue I have identified in my homelab is that i require a way to scan SBOMs and Github repositories to ensure they are secure before i pull from them, to do this i have found a tool called trivy.
 # <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step By Step Guide
 
