@@ -37,11 +37,15 @@ VM → Hardware → Add → PCI Device → Raw Device → select each adapter fr
 
 Now boot the VM. On first launch OPNsense will ask you to log in as root or installer — choose installer to begin the OS setup. Follow the wizard through to the homescreen.
 
-Gotchas I hit along the way:
+Issues I ran into
 
-    If you're on a switch with VLANs, make sure your management cable is plugged into an untagged (LAN-side) port, otherwise you'll lose access mid-install.
-    After the install finishes, I had to reboot the Proxmox host before the WAN interface came up properly. Do a reboot just to be safe.
-    If you already have a running OPNsense box, you can export its config, tweak things like VLAN interface IPs, then import it onto the new firewall — that's the route I took and it saved a lot of re-typing.
+So, a few things tripped me up during this:
+
+First off — if you've got a switch with VLANs set up on it, make sure the cable you're plugged into for the install is on an untagged LAN-side port. Trust me, I learned this the hard way. You'll lose access mid-install and it's not fun figuring out why.
+
+Second — once the install finishes and you're at the homescreen, I'd reboot the Proxmox host just to be safe. For whatever reason, my WAN interface wouldn't come up properly until I did. Sounded like a fluke, but yeah, it was real.
+
+Third — if you already have an OPNsense box running, don't bother re-entering all your settings by hand. Export the config from the old one, nudge the bits that need changing (VLAN IPs, interface names, whatever), then just import it straight onto the new firewall. That's honestly what I ended up doing and it saved me a ton of time.
 
 # <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 4 – Configure High Availability
 
