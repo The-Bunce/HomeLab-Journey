@@ -1,4 +1,4 @@
-# Homelab Issue
+# Firewall availability issues
 
 The main issue I've identified with my homelab is that updating the firewall causes me to lose access to the rest of the network and the internet. To resolve this, I've decided to deploy BUNCEPROX02 as a secondary firewall gateway and configure both in High Availability mode.
 
