@@ -103,4 +103,6 @@ On **both** firewalls, ensure the same services are selected for failover. I cho
 - Kea DHCP
 - Virtual IPs
 
-
+> 🎉 **Congrats! You now have High Availability on your firewalls!** 🎉
+>
+> 🔥 Both firewalls are in sync, failover is active, and your network is protected.
