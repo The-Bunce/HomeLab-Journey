@@ -1,10 +1,10 @@
-**# Firewall Availability Issues**
+# Firewall Availability Issues**
   
 
 The main issue I've identified with my homelab is that updating the firewall causes me to lose access to the rest of the network and the internet. To resolve this, I've decided to deploy BUNCE-FW-02 as a secondary firewall gateway and configure both in High Availability mode.
   
 
-**# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Requirements**
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Requirements**
   
 
 - 2 Ethernet ports (I used 2× TP-Link USB Ethernet adapters)
@@ -20,7 +20,7 @@ The VM will be allocated:
 - 50 GB storage
   
 
-**# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 1 – Download the ISO**
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 1 – Download the ISO**
   
 
 First, grab the OPNsense installer ISO from the official download page. Click the "Download OPNsense" button, right-click → Copy Link Address, then head back to Proxmox:
@@ -31,13 +31,13 @@ First, grab the OPNsense installer ISO from the official download page. Click th
 3. Paste the URL you copied and let it download
   
 
-**# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 2 – Create the VM**
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 2 – Create the VM**
   
 
 With Proxmox open, click Create VM and walk through the wizard. Allocate at least the specs listed above (8 GB RAM / 4 cores / 50 GB disk) so the firewall has room to breathe.
   
 
-**# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 3 – Passthrough & Install**
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 3 – Passthrough & Install**
   
 
 > ⚠️ Don't boot the VM yet.
@@ -54,13 +54,13 @@ Before starting it, pass through both USB NICs:
 Now boot the VM. The installer starts automatically. If you land on a shell prompt instead, type `installer` to launch the setup wizard. Follow the wizard through to the homescreen.
   
 
-**# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 4 – Configure High Availability (CARP)**
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 4 – Configure High Availability (CARP)
   
 
 With both firewalls installed and patched in, it's time to set up the High Availability (CARP) pair on OPNsense so traffic can fail over automatically if one node goes down.
   
 
-**## 4a. Pre-Configuration & Virtual IP**
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 4a - Pre-Configuration & Virtual IP
   
 
 1. Log in to both firewalls.
@@ -85,7 +85,8 @@ With both firewalls installed and patched in, it's time to set up the High Avail
    - Click Save.
   
 
-**## 4b. HA Sync Settings**
+
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 4b - HA Sync Settings
   
 
 On BUNCE-FW-01 (primary):
@@ -123,7 +124,7 @@ On both firewalls, navigate to System → High Availability → Settings and ens
 > Note: If you're still using the "disable Kea on the backup" workaround (see Troubleshooting below), leave Kea DHCP unchecked until you've deployed the watchdog script in Step 5.
   
 
-**# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 5 – Kea DHCP CARP Failover Watchdog**
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 5 – Kea DHCP CARP Failover Watchdog
   
 
 If you have Kea DHCP running on your firewall, it will cause split-brain once both nodes are active. The quick fix is to disable Kea on the backup (BUNCE-FW-02), but the proper fix is a watchdog script that starts/stops Kea based on CARP state.
@@ -240,7 +241,7 @@ The difference between the two boxes:
 | Ctrl-agent cleanup on failover | — | killall kea-ctrl-agent + PID-file removal |
   
 
-**# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Troubleshooting & Pitfalls**
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Troubleshooting & Pitfalls
   
 
 These are the issues that tripped me up. They don't block the steps above, but they'll save you an hour.
@@ -266,7 +267,7 @@ If you already have an OPNsense box running, don't bother re-entering all your s
 If you have Kea DHCP enabled, you'll experience split-brain once both nodes are active. The quick fix I used was to disable the service on BUNCE-FW-02. The proper fix is the watchdog script in Step 5 — deploy it, re-enable Kea on the backup, then add Kea DHCP to the failover service list in Step 4c.
   
 
-**# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Verifying Failover**
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Verifying Failover
   
 Before you trust the setup, do a quick failover test:
   
