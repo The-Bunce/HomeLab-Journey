@@ -4,7 +4,7 @@
 The main issue I've identified with my homelab is that updating the firewall causes me to lose access to the rest of the network and the internet. To resolve this, I've decided to deploy BUNCE-FW-02 as a secondary firewall gateway and configure both in High Availability mode.
   
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Requirements**
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Requirements
   
 
 - 2 Ethernet ports (I used 2× TP-Link USB Ethernet adapters)
@@ -20,7 +20,7 @@ The VM will be allocated:
 - 50 GB storage
   
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 1 – Download the ISO**
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 1 – Download the ISO
   
 
 First, grab the OPNsense installer ISO from the official download page. Click the "Download OPNsense" button, right-click → Copy Link Address, then head back to Proxmox:
@@ -31,13 +31,13 @@ First, grab the OPNsense installer ISO from the official download page. Click th
 3. Paste the URL you copied and let it download
   
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 2 – Create the VM**
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 2 – Create the VM
   
 
 With Proxmox open, click Create VM and walk through the wizard. Allocate at least the specs listed above (8 GB RAM / 4 cores / 50 GB disk) so the firewall has room to breathe.
   
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 3 – Passthrough & Install**
+# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 3 – Passthrough & Install
   
 
 > ⚠️ Don't boot the VM yet.
