@@ -47,6 +47,10 @@ Second — once the install finishes and you're at the homescreen, I'd reboot th
 
 Third — if you already have an OPNsense box running, don't bother re-entering all your settings by hand. Export the config from the old one, nudge the bits that need changing (VLAN IPs, interface names, whatever), then just import it straight onto the new firewall. That's honestly what I ended up doing and it saved me a ton of time.
 
+Fourth - if you have Kea DHCP enabled, please be aware you will experiance split servicing to fix this i disabled this service on the OPNsense backup server. 
+you can solve this one of two ways having Kea have its own database which the live peers share or run a script on both which enables DHCP depending on which one is active(master)
+
+
 # <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 4 – Configure High Availability
 
 With both firewalls installed and patched in, it's time to set up the High Availability (CARP) pair on OPNsense so traffic can fail over automatically if one node goes down.
@@ -106,3 +110,68 @@ On **both** firewalls, ensure the same services are selected for failover. I cho
 > 🎉 **Congrats! You now have High Availability on your firewalls!** 🎉
 >
 > 🔥 Both firewalls are in sync, failover is active, and your network is protected.
+
+## <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Kea DHCP – CARP Failover Watchdog
+```bash
+cat /usr/local/etc/rc.d/kea-dhcp-ha
+```
+
+Confirm the output matches what you pasted (no missing lines, no stray whitespace).
+
+---
+
+### 3. Make it executable & enable at boot
+
+```bash
+chmod +x /usr/local/etc/rc.d/kea-dhcp-ha
+sysrc kea_dhcp_ha_enable="YES"
+```
+
+---
+
+### 4. Start it now
+
+```bash
+service kea-dhcp-ha start
+```
+
+> **Note:** `service start` already runs the script in the background. You do **not** need `nohup … &` separately.
+
+---
+
+### 5. Confirm it's running
+
+```bash
+ps aux | grep kea-dhcp-ha
+```
+
+You should see a shell PID (e.g. `30399`).
+
+To check which Kea daemons are active:
+
+```bash
+ps aux | grep -i kea
+```
+
+---
+
+### 6. Stop / Troubleshoot
+
+| Action | Command |
+|--------|---------|
+| **Stop the watchdog** (kills script + children) | `pkill -f kea-dhcp-ha` |
+| Confirm it's gone | `ps aux \| grep kea-dhcp-ha` |
+| Disable at boot | `sysrc kea_dhcp_ha_enable="NO"` |
+
+---
+
+### FW-01 vs FW-02
+
+| | BUNCE-FW-01 | BUNCE-FW-02 |
+|--|-------------|-------------|
+| Daemons managed | `kea-dhcp4` only | `kea-dhcp4` **+** `kea-ctrl-agent` |
+| Ctrl-agent cleanup on failover | — | `killall kea-ctrl-agent` + PID-file removal |
+
+---
+
+*Adjust the `PIDFILE` / `CTRLPID` paths if your Kea version writes them elsewhere (`ls /var/run/kea/` to verify).*
