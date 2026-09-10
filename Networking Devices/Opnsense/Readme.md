@@ -247,6 +247,13 @@ If you already have an OPNsense box running, don't bother re-entering all your s
   
 If you have Kea DHCP enabled, you'll experience split-brain once both nodes are active. The quick fix I used was to disable the service on BUNCE-FW-02. The proper fix is the watchdog script in Step 5 — deploy it, re-enable Kea on the backup, then add Kea DHCP to the failover service list in Step 4c.
   
+**5. Reboot Procedure.**
+
+I have noticed that when you reboot the script does not automatically run, to fix this on boot just run this command 
+
+```bash
+nohup sh /usr/local/etc/rc.d/kea-dhcp-ha &
+```
 
 # <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Verifying Failover
   
