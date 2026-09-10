@@ -185,10 +185,6 @@ EOF
 
 > Adjust CARP_IF, PIDFILE, and CTRLPID if your Kea version writes them elsewhere. Run `ls /var/run/kea/` to verify.
   
-
-Now deploy it on both boxes:
-  
-
 ```bash
 # Verify the script looks correct
 cat /usr/local/etc/rc.d/kea-dhcp-ha
@@ -224,16 +220,6 @@ ps aux | grep kea-dhcp-ha
 # Disable at boot
 sysrc kea_dhcp_ha_enable="NO"
 ```
-  
-
-The difference between the two boxes:
-  
-
-| | BUNCE-FW-01 | BUNCE-FW-02 |
-|:--|:--|:--|
-| Daemons managed | kea-dhcp4 only | kea-dhcp4 + kea-ctrl-agent |
-| MANAGE_CTRL_AGENT | "no" | "yes" |
-| Ctrl-agent cleanup on failover | — | killall kea-ctrl-agent + PID-file removal |
   
 
 # <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Troubleshooting & Pitfalls
