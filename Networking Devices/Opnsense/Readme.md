@@ -255,6 +255,7 @@ I have noticed that when you reboot the script does not automatically run, to fi
 nohup sh /usr/local/etc/rc.d/kea-dhcp-ha &
 ```
 
+
 # <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Verifying Failover
   
 Before you trust the setup, do a quick failover test:
