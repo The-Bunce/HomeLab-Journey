@@ -132,61 +132,56 @@ If you have Kea DHCP running on your firewall, it will cause split-brain once bo
 
 Create /usr/local/etc/rc.d/kea-dhcp-ha on both firewalls:
   
-
+For BUNCE-FW-01 (Master)
 ```bash
 #!/bin/sh
-# kea-dhcp-ha – CARP-aware Kea DHCP watchdog
-# Ensures only the CARP master runs Kea DHCP.
-#
-# On BUNCE-FW-02, set MANAGE_CTRL_AGENT="yes" to also
-# manage kea-ctrl-agent.
+# Auto-enable/disable Kea DHCPv4 based on CARP (VIP) state.
+# Master  -> DHCP running
+# Standby -> DHCP stopped
 
-# --- Configuration (adjust to your setup) ---
-CARP_IF="carp0"             # CARP interface (check with: ifconfig | grep carp)
-PIDFILE="/var/run/kea/kea-dhcp4.pid"
-CTRLPID="/var/run/kea/kea-ctrl-agent.pid"
-CHECK_INTERVAL=5            # seconds between checks
-MANAGE_CTRL_AGENT="no"      # set to "yes" on BUNCE-FW-02
+CARP_IF="igb1"                 # << CHANGE to your CARP interface (e.g. igb0, em0)
+VIP="10.10.3.1"              # << CHANGE to your CARP virtual IP
 
-# --- Helpers ---
-is_master() {
-    ifconfig "$CARP_IF" 2>/dev/null | grep -q "MASTER"
-}
-
-start_kea() {
-    if [ ! -f "$PIDFILE" ]; then
-        logger -t kea-dhcp-ha "CARP master detected – starting kea-dhcp4"
-        service kea-dhcp4 start
-    fi
-    if [ "$MANAGE_CTRL_AGENT" = "yes" ] && [ ! -f "$CTRLPID" ]; then
-        logger -t kea-dhcp-ha "Starting kea-ctrl-agent"
-        service kea-ctrl-agent start
-    fi
-}
-
-stop_kea() {
-    if [ -f "$PIDFILE" ]; then
-        logger -t kea-dhcp-ha "Demoted to BACKUP – stopping kea-dhcp4"
-        service kea-dhcp4 stop
-    fi
-    if [ "$MANAGE_CTRL_AGENT" = "yes" ] && [ -f "$CTRLPID" ]; then
-        logger -t kea-dhcp-ha "Stopping kea-ctrl-agent"
-        killall kea-ctrl-agent 2>/dev/null
-        rm -f "$CTRLPID"
-    fi
-}
-
-# --- Main loop ---
 while true; do
-    if is_master; then
-        start_kea
+    state=$(pfctl -sinfo 2>/dev/null | awk -v ip="$VIP" '$1==ip {print $2; exit}')
+
+    if [ "$state" = "MASTER" ]; then
+        # Ensure DHCP is up
+        if ! service kea-dhcp4 status | grep -q 'running'; then
+            /usr/local/etc/rc.d/kea-dhcp4 start
+        fi
     else
-        stop_kea
+        # Standby: ensure DHCP is down
+        if service kea-dhcp4 status | grep -q 'running'; then
+            /usr/local/etc/rc.d/kea-dhcp4 stop
+        fi
     fi
-    sleep "$CHECK_INTERVAL"
-done
+
+    sleep 2
 ```
-  
+For BUNCE-FW-02 (Backup)
+```bash
+#!/bin/sh
+PIDFILE="/var/run/kea/kea-dhcp4.kea-dhcp4.pid"
+CTRLPID="/var/run/kea/kea-ctrl-agent.kea-ctrl-agent.pid"
+
+while true; do
+  if ifconfig -a | grep "carp:" | grep -q MASTER; then
+    if [ ! -f "$PIDFILE" ] || ! kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
+      rm -f "$PIDFILE" "$CTRLPID"
+      /usr/local/sbin/kea-ctrl-agent -c /usr/local/etc/kea/kea-ctrl-agent.conf &
+      sleep 1
+      /usr/local/sbin/kea-dhcp4 -c /usr/local/etc/kea/kea-dhcp4.conf &
+    fi
+  else
+    [ -f "$PIDFILE" ] && kill "$(cat "$PIDFILE")" 2>/dev/null
+    killall kea-ctrl-agent 2>/dev/null
+    rm -f "$PIDFILE" "$CTRLPID"
+  fi
+  sleep 10
+done
+EOF
+```
 
 > Adjust CARP_IF, PIDFILE, and CTRLPID if your Kea version writes them elsewhere. Run `ls /var/run/kea/` to verify.
   
