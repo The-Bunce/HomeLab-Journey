@@ -6,7 +6,7 @@ This repository tracks the evolution of my homelab: the hardware, the network, t
 
 ---
 
-## 📋 Changelog
+## <img src="Images/Readme-images/Cogs-Icon.png" width="25" height="25" /> Changelog
 
 ### Latest Revision
 
@@ -20,15 +20,15 @@ This repository tracks the evolution of my homelab: the hardware, the network, t
 
 ---
 
-## 🌐 Network Overview
+## <img src="Images/Readme-images/Cogs-Icon.png" width="25" height="25" /> Network Overview
 
 > *High-level topology — full detail lives in the draw.io source.*
 
-![Network Diagram](Images/Readme-images/Homelab.drawio%20September%20Update.png)
+<img src="Images/Readme-images/Homelab.drawio September Update.png" width="800" height="500" />
 
 ---
 
-## 🎯 Primary Goals
+## <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Primary Goals
 
 ### 🔒 Secure Environment
 - **SIEM** — Wazuh for log ingestion & threat correlation
@@ -55,11 +55,11 @@ This repository tracks the evolution of my homelab: the hardware, the network, t
 
 ---
 
-## 🖥️ Hardware
+## <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Hardware
 
-### Helios Rack
+### <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Helios Rack
 
-![Helios Rack](Images/Readme-images/Helios.jpeg)
+<img src="Images/Readme-images/Helios.jpeg" width="500" height="500" />
 
 | Node | `BUNCEPROX01` | `BUNCEDESKTOP01` |
 |---|---|---|
@@ -69,9 +69,9 @@ This repository tracks the evolution of my homelab: the hardware, the network, t
 | **Motherboard** | ASUS PRIME X399-A | ASUS PRIME X399-A |
 | **Chassis** | 5U | 4U |
 
-### Citadel Rack
+### <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Citadel Rack
 
-![Citadel Rack](Images/Readme-images/Citadel.jpeg)
+<img src="Images/Readme-images/Citadel.jpeg" width="500" height="500" />
 
 | Spec | Detail |
 |---|---|
