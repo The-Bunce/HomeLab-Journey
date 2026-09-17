@@ -6,7 +6,7 @@ This repository tracks the evolution of my homelab: the hardware, the network, t
 
 ---
 
-## <img src="Images/Readme-images/Cogs-Icon.png" width="25" height="25" /> Changelog
+## <img src="images/Readme-images/Cogs-Icon.png" width="25" height="25" /> Changelog
 
 ### Latest Revision
 
@@ -20,15 +20,15 @@ This repository tracks the evolution of my homelab: the hardware, the network, t
 
 ---
 
-## <img src="Images/Readme-images/Cogs-Icon.png" width="25" height="25" /> Network Overview
+## <img src="images/Readme-images/Cogs-Icon.png" width="25" height="25" /> Network Overview
 
 > *High-level topology — full detail lives in the draw.io source.*
 
-<img src="Images/Readme-images/Homelab.drawio September Update.png" width="800" height="500" />
+<img src="images/Readme-images/Homelab.drawio September Update.png" width="800" height="500" />
 
 ---
 
-## <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Primary Goals
+## <img src="images/Readme-images/Server-Icon.png" width="25" height="25" /> Primary Goals
 
 ### 🔒 Secure Environment
 - **SIEM** — Wazuh for log ingestion & threat correlation
@@ -55,7 +55,7 @@ This repository tracks the evolution of my homelab: the hardware, the network, t
 
 ---
 
-## <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Hosted Services
+## <img src="images/Readme-images/Server-Icon.png" width="25" height="25" /> Hosted Services
 
 | Service | Purpose | Node | Stack |
 |---|---|---|---|
@@ -76,11 +76,11 @@ This repository tracks the evolution of my homelab: the hardware, the network, t
 
 > All Docker services are managed via **Docker Compose** 
 
-## <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Hardware
+## <img src="images/Readme-images/Server-Icon.png" width="25" height="25" /> Hardware
 
-### <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Helios Rack
+### <img src="images/Readme-images/Server-Icon.png" width="25" height="25" /> Helios Rack
 
-<img src="Images/Readme-images/Helios.jpeg" width="500" height="500" />
+<img src="images/Readme-images/Helios.jpeg" width="500" height="500" />
 
 | Node | `BUNCEPROX01` | `BUNCEDESKTOP01` |
 |---|---|---|
@@ -90,9 +90,9 @@ This repository tracks the evolution of my homelab: the hardware, the network, t
 | **Motherboard** | ASUS PRIME X399-A | ASUS PRIME X399-A |
 | **Chassis** | 5U | 4U |
 
-### <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Citadel Rack
+### <img src="images/Readme-images/Server-Icon.png" width="25" height="25" /> Citadel Rack
 
-<img src="Images/Readme-images/Citadel.jpeg" width="500" height="500" />
+<img src="images/Readme-images/Citadel.jpeg" width="500" height="500" />
 
 | Spec | Detail |
 |---|---|
