@@ -85,9 +85,7 @@ This repository tracks the evolution of my homelab: the hardware, the network, t
 ## 📌 Contributing / Updating
 
 - All changes are logged in the **Changelog** section above
-- Deployment guides and runbooks live under `/docs` *(add when ready)*
-- Network source: `Homelab.drawio`
 
 ---
 
-*Built and maintained by [Bunce](#) · Last updated: 17 September 2026*
+*Built and maintained by [The-Bunce](#) · Last updated: 17 September 2026*
