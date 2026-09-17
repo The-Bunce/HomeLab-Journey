@@ -1,28 +1,28 @@
 #  Homelab Issue
 I have noticed that I have started to use AI models quite a lot recently, so I have decided to deploy my own AI system
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Requirements
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Requirements
 GPU
 Virtual Machine
 GPU Passthrough enabled on Proxmox (follow Guide)
 Supported GPUs
-# <img src="/Images/Docker-Images/AISetup1.png" width="800" height="500"/>
+# <img src="/images/Docker-Images/AISetup1.png" width="800" height="500"/>
 
 GPU I am using will be an RTX 3090 
 
-# <img src="/Images/Docker-Images/AISetup2-GPU.png" width="800" height="500"/>
+# <img src="/images/Docker-Images/AISetup2-GPU.png" width="800" height="500"/>
 
 OS 
 The OS I will be using is Ubuntu 
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 1
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 1
 
 Creating and setting up the Virtual Machine
 
 Go to Proxmox (you will need to ensure the GPU in your system is assigned to the vm that will be hosting the AI)
 
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 2
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 2
 
 Installing drivers that are required
 
@@ -59,7 +59,7 @@ cat /proc/driver/nvidia/version
 ```
 
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 3  Installing the Nvidia toolkit
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 3  Installing the Nvidia toolkit
 
 ```bash
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
@@ -74,7 +74,7 @@ sudo apt-get update
 sudo apt-get install -y nvidia-container-toolkit
 ```
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step  4 Install docker-compose
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step  4 Install docker-compose
 ```bash
 # Add Docker's official GPG key:
 sudo apt update
@@ -113,7 +113,7 @@ sudo docker run --rm --runtime=nvidia --gpus all ubuntu nvidia-smi
 test to see if all is configured correctly
 
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 4 Folder Structure
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 4 Folder Structure
 
 please create the following folders on your system you can either create them on vscode right click create or on the cli by the following command 
 ```bash
@@ -136,7 +136,7 @@ you will want to create these folders where you would want the files located
 
 
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 5 Folder Permission
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 5 Folder Permission
 
 ensure you change the below to be the user running the system ie you and the folder path of the compose file
 ```bash
@@ -148,7 +148,7 @@ to check ID of the user you can just run the following:
 id
 ```
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 6 Creating the Compose file 
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 6 Creating the Compose file 
 
 on the host you can either create the new compose file using vscode -> right click create or via the cli using the following 
 ```bash
@@ -348,7 +348,7 @@ now you need to ensure you change the networks prompted here as the one i am usi
 
 you will now need to amend the env file to use your data see below for generating the Ollama credential
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 7 Generating the Ollama Credential 	
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 7 Generating the Ollama Credential 	
 ```bash
 echo $(htpasswd -nB ollamauser) | sed -e s/\\$/\\$\\$/g
 ```
@@ -356,7 +356,7 @@ then place this value in the .env file under the OLLAMA_API_CREDENTIALS section
 
 	
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 8 DNS Configuration
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 8 DNS Configuration
 you need to ensure you have Cnames marked and pointed correctly for the URL (Traefik) to work
 
 I used Pi-hole for my dns so all it requires is for you to go into the Pihole dashboard -> Settings -> Local DNS Records -> put the URL you specified in the compose file for example chat.Domain and assign it to the IP of the docker host to find this on the host run the following

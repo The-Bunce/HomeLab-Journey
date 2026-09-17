@@ -1,16 +1,16 @@
 #  Scanning Of Github Repos
 The issue I have identified in my homelab is that i require a way to scan SBOMs and Github repositories to ensure they are secure before i pull from them, to do this i have found a tool called trivy.
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step By Step Guide
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step By Step Guide
 
 Here is a step by step breakdown on how to get trivy up and running and some useful commands
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Information
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Information
 
 First step will be to ensure you have a virtual machine either running linux or windows as this is what we will be installing it on.
 please see the guide from their website:
 https://trivy.dev/docs/latest/getting-started/
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 1 Installing Docker
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 1 Installing Docker
 
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -46,7 +46,7 @@ to check to see if its running please run the below command
 sudo systemctl status docker
 ```
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 2 installing trivy
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 2 installing trivy
 
 ```bash
 curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin v0.72.0
@@ -61,7 +61,7 @@ sudo apt-get install trivy
 ```
 
 
-# <img src="/Images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 3 Scanning a Github Repo
+# <img src="/images/Docker-Images/Step-by-Step.png" width="25" height="25" /> Step 3 Scanning a Github Repo
 
 to scan a repo simply put 
 ```bash
