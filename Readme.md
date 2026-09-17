@@ -55,6 +55,27 @@ This repository tracks the evolution of my homelab: the hardware, the network, t
 
 ---
 
+## <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Hosted Services
+
+| Service | Purpose | Node | Stack |
+|---|---|---|---|
+| **Wazuh** | SIEM / threat correlation | `BUNCEPROX01` | Docker |
+| **Pi-hole** | DNS filtering / ad blocking | `BUNCEPROX01` | Bare metal |
+| **Traefik** | Reverse proxy / SSL termination | `BUNCEPROX01` | Docker |
+| **Ollama** | Local AI inference | `BUNCEPROX01` (RTX 3090) | Docker |
+| **Gitea** | Self-hosted Git | `BUNCEPROX01` | Docker |
+| **Uptime Kuma** | Service monitoring | `BUNCEPROX01` | Docker |
+| **n8n** | Workflow automation | `BUNCEPROX01` | Docker |
+| **Homepage** | Service dashboard | `BUNCEPROX01` | Docker |
+| **Lubelogger** | Vehicle maintenance tracker | `BUNCEPROX01` | Docker |
+| **Tududi** | To-do / project tracker | `BUNCEPROX01` | Docker |
+| **Mealie** | Meal planning & recipes | `BUNCEPROX01` | Docker |
+| **TrueNAS** | Backup & storage | `BUNCEPROX02` | Bare metal |
+| **Proxmox Backup Server** | VM / CT backups | `BUNCEPROX02` | Docker |
+| **EVE-NG** | Network simulation lab | `BUNCEPROX02` | Bare metal |
+
+> All Docker services are managed via **Docker Compose** 
+
 ## <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Hardware
 
 ### <img src="Images/Readme-images/Server-Icon.png" width="25" height="25" /> Helios Rack
