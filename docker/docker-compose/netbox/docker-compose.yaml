@@ -1,0 +1,98 @@
+services:
+  # NetBox Service
+  netbox: &netbox
+    image: docker.io/netboxcommunity/netbox:${VERSION-v4.6-5.0.1}  # NetBox image with version
+    restart: unless-stopped  # Restart policy
+    depends_on:  # Services that need to be healthy before NetBox starts
+      - postgres
+      - redis
+      - redis-cache
+    env_file: env/netbox.env  # Environment variables file for NetBox
+    user: "netbox:root"  # User and group to run the container
+    healthcheck:
+      test: curl -f http://localhost:8080/login/ || exit 1  # Health check for NetBox
+      start_period: 90s
+      timeout: 3s
+      interval: 15s
+    volumes:
+      - ./configuration:/etc/netbox/config:z,ro  # Configuration volume
+      - netbox-media-files:/opt/netbox/netbox/media:rw  # Media files volume
+      - netbox-reports-files:/opt/netbox/netbox/reports:rw  # Reports files volume
+      - netbox-scripts-files:/opt/netbox/netbox/scripts:rw  # Scripts files volume
+
+  netbox-worker:
+    <<: *netbox  # Inherit configuration from netbox service
+    depends_on:
+      - netbox  # Dependency on netbox service
+    command:
+      - /opt/netbox/venv/bin/python
+      - /opt/netbox/netbox/manage.py
+      - rqworker  # Command to run rqworker for background tasks
+    healthcheck:
+      test: ps -aux | grep -v grep | grep -q rqworker || exit 1  # Health check for rqworker
+      start_period: 20s
+      timeout: 3s
+      interval: 15s
+
+  # PostgreSQL Service
+  postgres:
+    image: docker.io/postgres:18-alpine  # PostgreSQL image
+    restart: unless-stopped  # Restart policy
+    healthcheck:
+      test: pg_isready -q -t 2 -d $$POSTGRES_DB -U $$POSTGRES_USER  # Health check for PostgreSQL
+      start_period: 20s
+      timeout: 30s
+      interval: 10s
+      retries: 5
+    env_file: env/postgres.env  # Environment variables file for PostgreSQL
+    volumes:
+      - netbox-postgres:/var/lib/postgresql  # Volume for PostgreSQL data
+
+  # Redis Service
+  redis:
+    image: docker.io/valkey/valkey:9.0-alpine  # Redis image
+    restart: unless-stopped  # Restart policy
+    command:
+      - sh
+      - -c # this is to evaluate the $REDIS_PASSWORD from the env
+      - valkey-server --appendonly yes --requirepass $$REDIS_PASSWORD ## $$ because of docker-compose  # Redis server command
+    healthcheck: &redis-healthcheck
+      test: '[ $$(valkey-cli --pass "$${REDIS_PASSWORD}" ping) = ''PONG'' ]'  # Health check for Redis
+      start_period: 5s
+      timeout: 3s
+      interval: 1s
+      retries: 5
+    env_file: env/redis.env  # Environment variables file for Redis
+    volumes:
+      - netbox-redis-data:/data  # Volume for Redis data
+
+  # Redis Cache Service
+  redis-cache:
+    image: docker.io/valkey/valkey:9.0-alpine  # Redis Cache image
+    restart: unless-stopped
+    command:
+      - sh
+      - -c # this is to evaluate the $REDIS_PASSWORD from the env
+      - valkey-server --requirepass $$REDIS_PASSWORD ## $$ because of docker-compose  # Redis Cache server command
+    healthcheck: *redis-healthcheck  # Inherit healthcheck from redis service
+    env_file: env/redis-cache.env  # Environment variables file for Redis Cache
+    volumes:
+      - netbox-redis-cache-data:/data  # Volume for Redis Cache data
+
+networks:
+  soar-network:
+    driver: bridge  # Define the network
+
+volumes:
+  netbox-media-files:
+    driver: local  # Volume for NetBox media files
+  netbox-postgres:
+    driver: local  # Volume for PostgreSQL data
+  netbox-redis-cache-data:
+    driver: local  # Volume for Redis Cache data
+  netbox-redis-data:
+    driver: local  # Volume for Redis data
+  netbox-reports-files:
+    driver: local  # Volume for NetBox reports files
+  netbox-scripts-files:
+    driver: local  # Volume for NetBox scripts files
