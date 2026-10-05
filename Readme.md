@@ -20,14 +20,18 @@ This repository tracks the evolution of my homelab: the hardware, the network, t
 
 ---
 
-## <img src="images/Readme-images/Cogs-Icon.png" width="25" height="25" /> Network Overview
+## <img src="images/Readme-images/Cogs-Icon.png" width="25" height="25" /> Network Overview High Level
 
 > *High-level topology — full detail lives in the draw.io source.*
 
-<img src="images/Readme-images/Homelab.drawio September Update.png" width="800" height="500" />
+<img src="images/Readme-images/High-Level.jpg" width="800" height="500" />
 
 ---
+## <img src="images/Readme-images/Cogs-Icon.png" width="25" height="25" /> Network Overview Reverse Proxy
 
+<img src="images/Readme-images/Diagram-Reverse Proxy Connection.drawio.png" width="800" height="500" />
+
+---
 ## <img src="images/Readme-images/Server-Icon.png" width="25" height="25" /> Primary Goals
 
 ### 🔒 Secure Environment
