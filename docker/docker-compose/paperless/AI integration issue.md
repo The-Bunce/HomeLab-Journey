@@ -11,6 +11,7 @@ Configure AI settings in the web UI to enable intelligent document processing wi
 | 3 | **Turn on AI** | Enable artificial intelligence features |
 | 4 | **Choose model** | Select **llama3.1** for document processing |
 
-# <img src="/images/Docker-Images/Paperless.png" width="800" height="500"/>
+## <img src="images/Readme-images/Cogs-Icon.png" width="25" height="25" /> Example
 
+## <img src="/images/Docker-Images/Paperless.png" width="800" height="500"/>
 > ⚠️ **Important**: Ensure AI runs within the same Docker container as Paperless to maintain seamless integration and avoid connection issues.
