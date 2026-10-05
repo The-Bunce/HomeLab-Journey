@@ -1,0 +1,41 @@
+services:
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:v3.16.0 # 
+    container_name: mealie
+    restart: unless-stopped
+    ports:
+        - "9925:9000" # 
+    deploy:
+      resources:
+        limits:
+          memory: 1000M #
+          cpus: 0.25 
+    volumes:
+      - /home/${USER}/docker/mealie/mealie-data:/app/data/
+    environment:
+      # Set Backend ENV Variables Here
+      ALLOW_SIGNUP: "false"
+      PUID: 1000
+      PGID: 1000
+      TZ: ${tz}
+      BASE_URL: https://mealie.thebunce.co.uk
+    networks:
+      proxy:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}.entrypoints=http"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}.rule=Host(`${DOMAIN_NAME}`)"
+      - "traefik.http.middlewares.${TRAEFIK_ROUTER_NAME}-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}.middlewares=${TRAEFIK_ROUTER_NAME}-https-redirect"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}-secure.entrypoints=https"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}-secure.rule=Host(`${DOMAIN_NAME}`)"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}-secure.tls=true"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}-secure.service=${TRAEFIK_ROUTER_NAME}"
+      - "traefik.http.services.${TRAEFIK_ROUTER_NAME}.loadbalancer.server.port=9000"
+    env_file:
+      - .env
+networks:
+  proxy:
+    external: true
+volumes:
+  mealie-data:
