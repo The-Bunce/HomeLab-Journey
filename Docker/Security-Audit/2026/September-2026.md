@@ -1,3 +1,13 @@
+docker compose pull 
+docker compose down
+docker compose up 
+-d
+
+docker inspect pihole --format '{{json .Config.Labels}}' | python3 -m json.tool | grep "rule"
+checks what rules are set 
+
+curl -vI https://ai.thebunce.co.uk #see connections
+
 #  Docker security audit
 | Number | Docker Best Practice | How to  Comply | Tools Required | How I implemented | Commands to check
 |----------|-------------|-------------|-------------|-------------|-------------|
@@ -30,12 +40,12 @@
 | 27 |Docker Security Operations|-------------|-------------|-------------|-------------|
 | 28 |Docker Swarm Configuration|-------------|-------------|-------------|-------------|
 
-# <img src="/Images/Docker-Images/Audit.png" width="25" height="25" /> Audit of my own systems against the above standards (before i fixed them to be more secure)
+# <img src="/images/Docker-Images/Audit.png" width="25" height="25" /> Audit of my own systems against the above standards (before i fixed them to be more secure)
 
 | Number | Docker Best Practice | Compliant | Explaination | How I remediated |
 |----------|-------------|-------------|-------------|-------------|
-| 1 |Keep Host and Docker Up to Date|<img src="/Images/Docker-Images/Not Compliant.png" width="35" height="35" />|-------------|-------------|
-| 2 |Do Not Expose the Docker Daemon Socket|<img src="/Images/Docker-Images/yes.png" width="30" height="30" />|-------------|-------------|
+| 1 |Keep Host and Docker Up to Date|<img src="/images/Docker-Images/Not Compliant.png" width="35" height="35" />|-------------|-------------|
+| 2 |Do Not Expose the Docker Daemon Socket|<img src="/images/Docker-Images/yes.png" width="30" height="30" />|-------------|-------------|
 | 3 |Run Docker in Rootless Mode|-------------|-------------|-------------|
 | 4 |Avoid Privileged Containers|-------------|-------------|-------------|
 | 5 |Limit Container Resources|-------------|-------------|-------------|
